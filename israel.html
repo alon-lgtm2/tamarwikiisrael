@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Israël - Wiki voor Tamar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+            background-color: #f6f6f6;
+            color: #202122;
+            line-height: 1.6;
+        }
+
+        .wiki-banner {
+            background-color: #ffffff;
+            border-bottom: 1px solid #a7d7f9;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wiki-banner .logo-text {
+            font-family: 'Linux Libertine', Georgia, serif;
+            font-size: 1.5em;
+            color: #000;
+        }
+
+        .wiki-banner .logo-text span {
+            font-size: 0.55em;
+            color: #54595d;
+            display: block;
+            margin-top: -5px;
+        }
+
+        .wiki-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            min-height: 100vh;
+        }
+
+        .wiki-sidebar {
+            width: 220px;
+            min-width: 220px;
+            background: #f8f9fa;
+            border-right: 1px solid #e0e0e0;
+            padding: 15px 10px;
+            font-size: 0.85em;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .wiki-sidebar h3 {
+            font-size: 0.95em;
+            color: #54595d;
+            border-bottom: 1px solid #c8ccd1;
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+        }
+
+        .wiki-sidebar ul { list-style: none; padding-left: 0; }
+        .wiki-sidebar ul li { padding: 3px 0; }
+        .wiki-sidebar ul li a { color: #0645ad; text-decoration: none; font-size: 0.9em; }
+        .wiki-sidebar ul li a:hover { text-decoration: underline; }
+        .wiki-sidebar ul ul { padding-left: 15px; }
+        .wiki-sidebar ul ul li a { font-size: 0.85em; color: #0645ad; }
+
+        .wiki-content {
+            flex: 1;
+            padding: 20px 30px 50px 30px;
+            max-width: 960px;
+        }
+
+        .wiki-content h1 {
+            font-size: 1.9em;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .wiki-content h2 {
+            font-size: 1.4em;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 3px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .wiki-content h3 {
+            font-size: 1.15em;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        .wiki-content p { margin-bottom: 10px; font-size: 0.92em; }
+        .wiki-content ul, .wiki-content ol { margin-left: 25px; margin-bottom: 10px; font-size: 0.92em; }
+        .wiki-content li { margin-bottom: 4px; }
+
+        /* Infobox */
+        .infobox {
+            float: right;
+            width: 310px;
+            margin: 0 0 15px 20px;
+            border: 1px solid #a2a9b1;
+            background: #f8f9fa;
+            font-size: 0.85em;
+            border-collapse: collapse;
+        }
+
+        .infobox-header {
+            background: #0038b8;
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .infobox-image {
+            text-align: center;
+            padding: 8px;
+            background: #fff;
+        }
+
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .infobox-image .caption {
+            font-size: 0.8em;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        .infobox table { width: 100%; border-collapse: collapse; }
+        .infobox td { padding: 4px 8px; border-top: 1px solid #e0e0e0; vertical-align: top; }
+        .infobox td:first-child { font-weight: bold; width: 40%; background: #f0f0f0; }
+
+        /* Images */
+        .wiki-image {
+            border: 1px solid #c8ccd1;
+            background: #f8f9fa;
+            padding: 5px;
+            margin: 10px 0;
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .wiki-image.right { float: right; margin: 5px 0 10px 15px; max-width: 300px; }
+        .wiki-image.left { float: left; margin: 5px 15px 10px 0; max-width: 300px; }
+        .wiki-image.center { display: block; margin: 15px auto; text-align: center; max-width: 600px; }
+
+        .wiki-image img { max-width: 100%; display: block; border-radius: 2px; }
+        .wiki-image .img-caption { font-size: 0.8em; color: #555; padding: 4px 2px 2px 2px; text-align: center; }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .gallery-item {
+            border: 1px solid #c8ccd1;
+            background: #f8f9fa;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .gallery-item .img-caption {
+            font-size: 0.78em;
+            color: #555;
+            padding: 4px 2px;
+        }
+
+        /* Table */
+        .wiki-table { border-collapse: collapse; margin: 10px 0; font-size: 0.88em; }
+        .wiki-table th { background: #eaecf0; border: 1px solid #a2a9b1; padding: 6px 10px; text-align: left; }
+        .wiki-table td { border: 1px solid #a2a9b1; padding: 5px 10px; }
+
+        .clearfix::after { content: ""; display: table; clear: both; }
+
+        /* Fun fact */
+        .fun-fact {
+            background: #eaf3fb;
+            border: 1px solid #a7d7f9;
+            border-radius: 4px;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+        .fun-fact .fact-title { font-weight: bold; color: #0645ad; margin-bottom: 4px; }
+
+        /* Map container */
+        .map-container {
+            border: 1px solid #c8ccd1;
+            margin: 15px 0;
+            background: #f8f9fa;
+            padding: 5px;
+        }
+        .map-container iframe { width: 100%; height: 400px; border: none; }
+        .map-container .img-caption { font-size: 0.8em; color: #555; padding: 4px; text-align: center; }
+
+        /* Categories */
+        .categories {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            padding: 8px 12px;
+            margin-top: 30px;
+            font-size: 0.82em;
+            color: #555;
+        }
+        .categories a { color: #0645ad; text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wiki-container { flex-direction: column; }
+            .wiki-sidebar { width: 100%; min-width: 100%; border-right: none; border-bottom: 1px solid #e0e0e0; height: auto; position: static; }
+            .infobox { float: none; width: 100%; margin: 0 0 15px 0; }
+            .wiki-image.right, .wiki-image.left { float: none; max-width: 100%; margin: 10px 0; }
+        }
+
+        @media print {
+            .wiki-sidebar { display: none; }
+            .wiki-banner { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wiki-banner">
+    <div class="logo-text">
+        &#127760; TamarWiki
+        <span>De encyclopedie op jouw niveau</span>
+    </div>
+</div>
+
+<div class="wiki-container">
+
+<nav class="wiki-sidebar">
+    <h3>Inhoud</h3>
+    <ul>
+        <li><a href="#intro">Israël</a></li>
+        <li><a href="#geografie">1 Geografie</a>
+            <ul>
+                <li><a href="#geo-ligging">1.1 Waar ligt het?</a></li>
+                <li><a href="#geo-landschap">1.2 Landschap</a></li>
+                <li><a href="#geo-klimaat">1.3 Klimaat</a></li>
+                <li><a href="#geo-steden">1.4 Steden</a></li>
+                <li><a href="#geo-natuur">1.5 Natuur en dieren</a></li>
+            </ul>
+        </li>
+        <li><a href="#cultuur">2 Cultuur</a>
+            <ul>
+                <li><a href="#cult-taal">2.1 Taal</a></li>
+                <li><a href="#cult-godsdienst">2.2 Godsdienst</a></li>
+                <li><a href="#cult-onderwijs">2.3 Onderwijs</a></li>
+                <li><a href="#cult-feestdagen">2.4 Feestdagen</a></li>
+                <li><a href="#cult-eten">2.5 Eten en drinken</a></li>
+                <li><a href="#cult-muziek">2.6 Muziek en dans</a></li>
+            </ul>
+        </li>
+        <li><a href="#geschiedenis">3 Geschiedenis</a>
+            <ul>
+                <li><a href="#hist-oud">3.1 Heel lang geleden</a></li>
+                <li><a href="#hist-diaspora">3.2 Joden over de wereld</a></li>
+                <li><a href="#hist-modern">3.3 Terugkeer</a></li>
+                <li><a href="#hist-staat">3.4 De staat Israël</a></li>
+                <li><a href="#hist-nu">3.5 Israël nu</a></li>
+            </ul>
+        </li>
+        <li><a href="#bezienswaardigheden">4 Bezienswaardigheden</a>
+            <ul>
+                <li><a href="#bez-jeruzalem">4.1 Jeruzalem</a></li>
+                <li><a href="#bez-telaviv">4.2 Tel Aviv</a></li>
+                <li><a href="#bez-dodezee">4.3 De Dode Zee</a></li>
+                <li><a href="#bez-eilat">4.4 Eilat</a></li>
+                <li><a href="#bez-meer">4.5 Meer plekken</a></li>
+            </ul>
+        </li>
+        <li><a href="#sport">5 Sport</a></li>
+        <li><a href="#uitvindingen">6 Uitvindingen</a></li>
+        <li><a href="#wetenswaardigheden">7 Wetenswaardigheden</a></li>
+    </ul>
+</nav>
+
+<main class="wiki-content">
+
+<h1 id="intro">Israël</h1>
+
+<div class="clearfix">
+
+<div class="infobox">
+    <div class="infobox-header">Staat Israël<br><span style="font-size:0.8em; font-weight:normal;">מדינת ישראל</span></div>
+    <div class="infobox-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Flag_of_Israel.svg/320px-Flag_of_Israel.svg.png" alt="Vlag van Israël">
+        <div class="caption">Vlag van Israël</div>
+    </div>
+    <div class="infobox-image">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Emblem_of_Israel_alternative_blue-gold.svg/140px-Emblem_of_Israel_alternative_blue-gold.svg.png" alt="Wapen van Israël" style="max-width:140px;">
+        <div class="caption">Wapen van Israël – de Menora</div>
+    </div>
+    <table>
+        <tr><td>Hoofdstad</td><td>Jeruzalem</td></tr>
+        <tr><td>Grootste stad</td><td>Jeruzalem</td></tr>
+        <tr><td>Talen</td><td>Hebreeuws, Arabisch</td></tr>
+        <tr><td>Werelddeel</td><td>Azië (Midden-Oosten)</td></tr>
+        <tr><td>Oppervlakte</td><td>22.145 km²</td></tr>
+        <tr><td>Inwoners</td><td>± 9,9 miljoen</td></tr>
+        <tr><td>Munteenheid</td><td>Sjekel (₪)</td></tr>
+        <tr><td>Staatshoofd</td><td>President</td></tr>
+        <tr><td>Regeringsleider</td><td>Minister-president</td></tr>
+        <tr><td>Onafhankelijk</td><td>14 mei 1948</td></tr>
+        <tr><td>Volkslied</td><td>Hatikwa (De Hoop)</td></tr>
+        <tr><td>Tijdzone</td><td>UTC+2</td></tr>
+        <tr><td>Rijdt aan</td><td>Rechterkant</td></tr>
+    </table>
+</div>
+
+<p><strong>Israël</strong> (Hebreeuws: יִשְׂרָאֵל) is een klein land in het <strong>Midden-Oosten</strong>. Het ligt in het werelddeel Azië, aan de oostkant van de Middellandse Zee. Israël is een heel bijzonder land, want het is belangrijk voor drie grote godsdiensten: het jodendom, het christendom en de islam.</p>
+
+<p>Hoewel Israël een klein land is (veel kleiner dan Nederland!), is er heel veel te zien en te beleven. Je vindt er woestijnen, bergen, stranden, en oude steden. Het land heeft een lange en spannende geschiedenis die duizenden jaren teruggaat.</p>
+
+<p>In Israël wonen ongeveer 9,9 miljoen mensen. De mensen die in Israël wonen komen uit veel verschillende landen van de wereld. Daardoor is het een land met veel verschillende culturen en tradities.</p>
+
+<div class="fun-fact">
+    <div class="fact-title">&#128161; Wist je dat?</div>
+    Israël is ongeveer half zo groot als Nederland! Nederland is 41.543 km² en Israël is maar 22.145 km². Toch wonen er bijna evenveel mensen.
+</div>
+
+</div>
+
+<!-- ==================== GEOGRAFIE ==================== -->
+<h2 id="geografie">Geografie</h2>
+
+<h3 id="geo-ligging">Waar ligt Israël?</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Israel_in_its_region_%28de-facto%29.svg/400px-Israel_in_its_region_%28de-facto%29.svg.png" alt="Kaart van Israël in het Midden-Oosten" style="width:290px;">
+    <div class="img-caption">Israël (donkergroen) in het Midden-Oosten</div>
+</div>
+
+<p>Israël ligt in het <strong>Midden-Oosten</strong>, een gebied in het zuidwesten van Azië. Het land grenst aan vier andere landen:</p>
+<ul>
+    <li><strong>Libanon</strong> in het noorden</li>
+    <li><strong>Syrië</strong> in het noordoosten</li>
+    <li><strong>Jordanië</strong> in het oosten</li>
+    <li><strong>Egypte</strong> in het zuidwesten</li>
+</ul>
+
+<p>Aan de westkant van Israël ligt de <strong>Middellandse Zee</strong>. In het zuiden heeft het land een klein stukje kust aan de <strong>Rode Zee</strong>, bij de stad Eilat. Israël ligt dus tussen twee zeeën!</p>
+
+<p>Het land ligt ook dicht bij andere werelddelen. Afrika is heel dichtbij (Egypte is in Afrika) en Europa is ook niet zo ver weg. Daarom wordt het Midden-Oosten soms een "kruispunt van de wereld" genoemd.</p>
+
+<!-- Interactive map -->
+<div class="map-container">
+    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=33.5,29.0,36.5,33.5&layer=mapnik&marker=31.5,34.75" loading="lazy"></iframe>
+    <div class="img-caption">Interactieve kaart van Israël – je kunt inzoomen en rondkijken!</div>
+</div>
+
+<h3 id="geo-landschap">Landschap</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Israel-2013-Negev-Makhtesh_Ramon_01.jpg/320px-Israel-2013-Negev-Makhtesh_Ramon_01.jpg" alt="Makhtesh Ramon in de Negev-woestijn">
+    <div class="img-caption">Makhtesh Ramon – een enorme krater in de Negev-woestijn</div>
+</div>
+
+<p>Voor zo'n klein land heeft Israël heel <strong>veel verschillende landschappen</strong>. Dit maakt het land extra bijzonder:</p>
+
+<ul>
+    <li><strong>Kustgebied</strong> – Langs de Middellandse Zee is een lange, smalle strook met stranden en vlak land. Hier wonen de meeste mensen.</li>
+    <li><strong>Bergen en heuvels</strong> – In het midden en noorden van het land zijn bergen en groene heuvels. Het hoogste punt is de berg Hermon (2.236 meter hoog!). In de winter kan daar zelfs sneeuw vallen.</li>
+    <li><strong>De Jordaanvallei</strong> – Dit is een diep dal in het oosten. De rivier de Jordaan stroomt hier doorheen, van het Meer van Galilea naar de Dode Zee.</li>
+    <li><strong>De Negev-woestijn</strong> – Het hele zuiden van Israël is woestijn. Het is er heel droog en warm. Toch wonen er ook mensen en zijn er zelfs steden.</li>
+    <li><strong>De Dode Zee</strong> – Dit is het laagste punt op de hele aarde! Het ligt 430 meter onder de zeespiegel.</li>
+</ul>
+
+<div class="clearfix"></div>
+
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Hermonsnow.jpg/320px-Hermonsnow.jpg" alt="Berg Hermon met sneeuw">
+        <div class="img-caption">Berg Hermon in de winter – met sneeuw!</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/PikiWiki_Israel_68498_a_landscape_in_the_golan_heights.jpg/320px-PikiWiki_Israel_68498_a_landscape_in_the_golan_heights.jpg" alt="Golanhoogten">
+        <div class="img-caption">De groene Golanhoogten in het noorden</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_the_Clouds_in_the_Negev_Desert.jpg/320px-Above_the_Clouds_in_the_Negev_Desert.jpg" alt="Negev woestijn">
+        <div class="img-caption">De Negev-woestijn bij zonsondergang</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Sea_of_Galilee_%28Kinneret%29.jpg/320px-Sea_of_Galilee_%28Kinneret%29.jpg" alt="Meer van Galilea">
+        <div class="img-caption">Het Meer van Galilea (Kinneret)</div>
+    </div>
+</div>
+
+<h3 id="geo-klimaat">Klimaat</h3>
+
+<p>Het klimaat in Israël is heel anders dan in Nederland. Er zijn eigenlijk maar <strong>twee seizoenen</strong>:</p>
+
+<table class="wiki-table">
+    <tr>
+        <th>Seizoen</th>
+        <th>Maanden</th>
+        <th>Hoe is het weer?</th>
+    </tr>
+    <tr>
+        <td><strong>Zomer</strong></td>
+        <td>April – Oktober</td>
+        <td>Heel warm en droog. In de woestijn kan het wel 45°C worden! Aan de kust is het rond 30°C. Het regent bijna nooit.</td>
+    </tr>
+    <tr>
+        <td><strong>Winter</strong></td>
+        <td>November – Maart</td>
+        <td>Koeler en nat. Het regent regelmatig. In Jeruzalem kan het soms sneeuwen! Aan de kust is het rond 15°C.</td>
+    </tr>
+</table>
+
+<p>In Nederland regent het het hele jaar door, maar in Israël regent het bijna alleen in de winter. Daarom is water heel belangrijk in Israël. De Israëliërs hebben slimme manieren bedacht om zuinig met water om te gaan (zie ook: <a href="#uitvindingen">Uitvindingen</a>).</p>
+
+<h3 id="geo-steden">Steden</h3>
+
+<p>Israël heeft een aantal grote en belangrijke steden:</p>
+
+<ul>
+    <li><strong>Jeruzalem</strong> – De hoofdstad en de heiligste stad. Hier staan veel oude gebouwen en heilige plekken. Er wonen ongeveer 950.000 mensen.</li>
+    <li><strong>Tel Aviv</strong> – De modernste en grootste stad van Israël (samen met Jaffa). Dit is de stad waar het meeste bedrijfsleven is. Er wonen ongeveer 460.000 mensen, maar in het hele gebied eromheen meer dan 4 miljoen!</li>
+    <li><strong>Haifa</strong> – Een grote havenstad in het noorden, aan de Middellandse Zee. Hier staat ook de berg Karmel.</li>
+    <li><strong>Be'er Sjeva</strong> – De grootste stad in de Negev-woestijn. Het wordt ook wel de "hoofdstad van de Negev" genoemd.</li>
+    <li><strong>Eilat</strong> – Een vakantiestad helemaal in het zuiden, aan de Rode Zee.</li>
+</ul>
+
+<h3 id="geo-natuur">Natuur en dieren</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Nubian_Ibex_in_Mitzpe_Ramon_%2840195%29.jpg/320px-Nubian_Ibex_in_Mitzpe_Ramon_%2840195%29.jpg" alt="Nubische steenbok in de Negev">
+    <div class="img-caption">Een Nubische steenbok (ibex) in de Negev-woestijn</div>
+</div>
+
+<p>Ondanks dat het een klein land is, leven er veel bijzondere dieren in Israël:</p>
+<ul>
+    <li><strong>Steenbokken</strong> (ibex) – Deze mooie berggeiten leven in de woestijn. Je kunt ze goed zien bij Ein Gedi, bij de Dode Zee.</li>
+    <li><strong>Flamingo's</strong> – In de winter komen er flamingo's naar Israël.</li>
+    <li><strong>Trekvogels</strong> – Israël ligt op de route van miljoenen vogels die elk jaar van Europa naar Afrika vliegen en terug. In het Hula-dal kun je dit spectakel zien.</li>
+    <li><strong>Gazellen</strong> – Deze snelle dieren leven in het hele land.</li>
+    <li><strong>Koraalvissen</strong> – In de Rode Zee bij Eilat zwemmen prachtige kleurrijke vissen.</li>
+</ul>
+
+<p>Israël doet veel aan natuurbescherming. Er zijn meer dan 60 natuurreservaten in het land. Er is zelfs een speciaal programma om dieren die vroeger in het land leefden, maar verdwenen waren, terug te brengen.</p>
+
+<div class="fun-fact">
+    <div class="fact-title">&#128161; Wist je dat?</div>
+    Elk jaar vliegen meer dan 500 miljoen vogels over Israël! Het is een van de belangrijkste trekroutes ter wereld voor vogels.
+</div>
+
+<div class="clearfix"></div>
+
+<!-- ==================== CULTUUR ==================== -->
+<h2 id="cultuur">Cultuur</h2>
+
+<h3 id="cult-taal">Taal</h3>
+
+<p>In Israël spreken de meeste mensen <strong>Hebreeuws</strong> (Ivriet). Dit is een hele bijzondere taal! Hebreeuws was duizenden jaren lang een "dode taal" – dat betekent dat niemand het meer als gewone taal sprak. Het werd alleen nog gebruikt voor bidden en in religieuze boeken.</p>
+
+<p>Aan het einde van de 19e eeuw heeft een man genaamd <strong>Eliëzer Ben-Jehoeda</strong> het Hebreeuws weer tot leven gebracht. Hij bedacht nieuwe woorden voor moderne dingen (zoals "ijs" en "krant") en sprak alleen maar Hebreeuws met zijn zoon. Langzaam gingen steeds meer mensen het spreken.</p>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Road_sign_Herzliya_%284%29.JPG/320px-Road_sign_Herzliya_%284%29.JPG" alt="Drietalig verkeersbord in Israël">
+    <div class="img-caption">Verkeersborden in Israël staan in drie talen: Hebreeuws, Arabisch en Engels</div>
+</div>
+
+<p>Hebreeuws schrijf je van <strong>rechts naar links</strong> (andersom dan Nederlands!). Het alfabet ziet er heel anders uit. Hier zijn een paar voorbeelden:</p>
+
+<table class="wiki-table">
+    <tr>
+        <th>Nederlands</th>
+        <th>Hebreeuws</th>
+        <th>Hoe spreek je het uit?</th>
+    </tr>
+    <tr><td>Hallo / Vrede</td><td>שלום</td><td>Sjalom</td></tr>
+    <tr><td>Dank je wel</td><td>תודה</td><td>Toda</td></tr>
+    <tr><td>Ja</td><td>כן</td><td>Ken</td></tr>
+    <tr><td>Nee</td><td>לא</td><td>Lo</td></tr>
+    <tr><td>School</td><td>בית ספר</td><td>Beet sefer</td></tr>
+    <tr><td>Vriend</td><td>חבר</td><td>Chaver</td></tr>
+    <tr><td>Boek</td><td>ספר</td><td>Sefer</td></tr>
+    <tr><td>Water</td><td>מים</td><td>Majim</td></tr>
+</table>
+
+<p><strong>Arabisch</strong> is de tweede belangrijke taal. Ongeveer 20% van de bevolking in Israël is Arabisch. Op verkeersborden staan de namen in drie talen: Hebreeuws, Arabisch en Engels.</p>
+
+<p>Omdat de mensen in Israël uit de hele wereld zijn gekomen, hoor je op straat ook veel andere talen, zoals Russisch, Amhaars (uit Ethiopië), Frans en Engels.</p>
+
+<div class="fun-fact">
+    <div class="fact-title">&#128161; Wist je dat?</div>
+    "Sjalom" (שלום) betekent "vrede" én "hallo" én "tot ziens". Je kunt het dus altijd gebruiken!
+</div>
+
+<div class="clearfix"></div>
+
+<h3 id="cult-godsdienst">Godsdienst</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/East_Jerusalem_from_the_Mount_of_Olives_%2812394064783%29.jpg/400px-East_Jerusalem_from_the_Mount_of_Olives_%2812394064783%29.jpg" alt="Tempelberg met Rotskoepel en Al-Aqsa-moskee" style="width:290px;">
+    <div class="img-caption">De Tempelberg in Jeruzalem met de gouden Rotskoepel – heilig voor joden, christenen en moslims</div>
+</div>
+
+<p>Israël is een heel belangrijk land voor religie. Het is het heilige land voor drie grote godsdiensten:</p>
+
+<ul>
+    <li><strong>Jodendom</strong> – Israël is het thuisland van het Joodse volk. De meeste inwoners (ongeveer 74%) zijn Joods. Belangrijke heilige plekken zijn de Klaagmuur (Westelijke Muur) en de Tempelberg in Jeruzalem.</li>
+    <li><strong>Christendom</strong> – Christenen geloven dat Jezus in Israël is geboren (in Bethlehem) en geleefd heeft. De Heilig Grafkerk in Jeruzalem is een van de heiligste plekken voor christenen.</li>
+    <li><strong>Islam</strong> – Moslims geloven dat de profeet Mohammed vanuit Jeruzalem naar de hemel is gegaan. De Al-Aqsa-moskee en de Rotskoepel op de Tempelberg zijn heel belangrijk voor moslims.</li>
+</ul>
+
+<p>In Israël wonen ook <strong>Druzen</strong>, <strong>Bahai's</strong> en mensen van andere geloven. Er zijn ook veel mensen die niet religieus zijn.</p>
+
+<p>De Joodse rustdag is de <strong>sjabbat</strong>. Die begint op vrijdagavond als de zon ondergaat en eindigt op zaterdagavond. Tijdens sjabbat stoppen veel mensen met werken. In sommige steden rijden er dan geen bussen.</p>
+
+<div class="clearfix"></div>
+
+<h3 id="cult-onderwijs">Onderwijs</h3>
+
+<p>Kinderen in Israël gaan naar school vanaf 3 jaar (kleuterschool) en de <strong>leerplicht</strong> is tot 18 jaar. Dit is hoe het schoolsysteem werkt:</p>
+
+<ul>
+    <li><strong>Basisschool</strong> (Beet Sefer Yesodi) – van groep 1 tot groep 6 (leeftijd 6-12 jaar)</li>
+    <li><strong>Onderbouw middelbare school</strong> (Chatichon) – 3 jaar (leeftijd 12-15)</li>
+    <li><strong>Bovenbouw middelbare school</strong> (Tichon) – 3 jaar (leeftijd 15-18)</li>
+</ul>
+
+<p>Israëlische kinderen gaan van <strong>zondag tot en met vrijdag</strong> naar school. Ja, ook op zondag! De vrije dag is zaterdag (sjabbat). Op vrijdag is de schooldag korter.</p>
+
+<p>Er zijn verschillende soorten scholen: gewone staatsscholen, religieuze Joodse scholen, Arabische scholen, en privéscholen. Alle kinderen leren Hebreeuws, Engels, wiskunde, wetenschap en nog veel meer.</p>
+
+<p>Na de middelbare school gaan de meeste jonge Israëliërs naar het <strong>leger</strong> (het IDF). Jongens dienen meestal 2 jaar en 8 maanden, en meisjes 2 jaar. Daarna gaan veel mensen reizen of studeren aan de universiteit.</p>
+
+<div class="fun-fact">
+    <div class="fact-title">&#128161; Wist je dat?</div>
+    In Israël is zondag een gewone schooldag! De week begint op zondag en de vrije dag is zaterdag (sjabbat).
+</div>
+
+<h3 id="cult-feestdagen">Feestdagen</h3>
+
+<p>Israël heeft veel bijzondere feestdagen. De meeste feestdagen zijn Joods en volgen de <strong>Joodse kalender</strong> (die is anders dan onze kalender). Hier zijn de belangrijkste:</p>
+
+<table class="wiki-table">
+    <tr>
+        <th>Feestdag</th>
+        <th>Wanneer (ongeveer)</th>
+        <th>Wat vier je?</th>
+    </tr>
+    <tr>
+        <td><strong>Rosj Hasjana</strong></td>
+        <td>September/Oktober</td>
+        <td>Joods Nieuwjaar. Mensen eten appel met honing voor een zoet nieuw jaar.</td>
+    </tr>
+    <tr>
+        <td><strong>Jom Kipoer</strong></td>
+        <td>September/Oktober</td>
+        <td>Grote Verzoendag. De heiligste dag van het jaar. Iedereen vast (eet niet). Het hele land staat stil – zelfs geen auto's op de weg! Kinderen fietsen op de lege snelwegen.</td>
+    </tr>
+    <tr>
+        <td><strong>Soekot</strong></td>
+        <td>Oktober</td>
+        <td>Loofhuttenfeest. Mensen bouwen een hutje (soeka) en eten daarin.</td>
+    </tr>
+    <tr>
+        <td><strong>Chanoeka</strong></td>
+        <td>December</td>
+        <td>Lichtfeest. Acht dagen lang steek je elke avond een kaarsje meer aan in een speciale kandelaar (chanoekia). Kinderen krijgen geld en snoep.</td>
+    </tr>
+    <tr>
+        <td><strong>Poeriem</strong></td>
+        <td>Maart</td>
+        <td>Een soort carnaval! Kinderen verkleden zich en iedereen eet driehoekige koekjes (hamantasjen).</td>
+    </tr>
+    <tr>
+        <td><strong>Pesach</strong></td>
+        <td>April</td>
+        <td>Paasfeest. Herdenkt dat de Joden uit Egypte zijn bevrijd. Een week lang eet je geen brood, maar matze (plat, ongerezen brood).</td>
+    </tr>
+    <tr>
+        <td><strong>Jom Ha'atsmaoet</strong></td>
+        <td>April/Mei</td>
+        <td>Onafhankelijkheidsdag van Israël (sinds 1948). Groot feest met vuurwerk en barbecues!</td>
+    </tr>
+</table>
+
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Hanukia_001.jpg/220px-Hanukia_001.jpg" alt="Chanoekia">
+        <div class="img-caption">Een chanoekia – de kandelaar voor Chanoeka</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/PikiWiki_Israel_7388_Sukkah.jpg/320px-PikiWiki_Israel_7388_Sukkah.jpg" alt="Soeka">
+        <div class="img-caption">Een soeka (hutje) voor het Loofhuttenfeest</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Hamantash.jpg/320px-Hamantash.jpg" alt="Hamantasjen">
+        <div class="img-caption">Hamantasjen – koekjes voor Poeriem</div>
+    </div>
+</div>
+
+<h3 id="cult-eten">Eten en drinken</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Falafel_balls.jpg/320px-Falafel_balls.jpg" alt="Falafel">
+    <div class="img-caption">Falafel – misschien wel het beroemdste eten van Israël</div>
+</div>
+
+<p>Het eten in Israël is heerlijk en heel gevarieerd! Omdat de mensen uit zoveel verschillende landen komen, vind je eten uit de hele wereld. Hier zijn de bekendste gerechten:</p>
+
+<ul>
+    <li><strong>Falafel</strong> – Gefrituurde balletjes van kikkererwten, geserveerd in een pitabroodje met salade en saus. Dit is misschien wel het beroemdste eten van Israël!</li>
+    <li><strong>Hummus</strong> – Een romige dip gemaakt van kikkererwten, tahini (sesampasta), citroen en knoflook. Israëliërs eten het bij bijna alles.</li>
+    <li><strong>Shakshuka</strong> – Eieren gepocheerd in een saus van tomaten en paprika. Heel lekker voor ontbijt!</li>
+    <li><strong>Pita</strong> – Rond, plat brood met een "zakje" erin waar je dingen in kunt stoppen.</li>
+    <li><strong>Israëlische salade</strong> – Heel fijn gesneden komkommer en tomaat, met olijfolie en citroen.</li>
+    <li><strong>Sabich</strong> – Een pitabroodje met gebakken aubergine, ei, hummus en salade.</li>
+    <li><strong>Halva</strong> – Een zoet snoep gemaakt van sesampasta.</li>
+</ul>
+
+<p>Veel Joodse mensen eten <strong>koosjer</strong>. Dat betekent dat ze bepaalde regels volgen over wat ze wel en niet mogen eten. Zo mogen ze geen varkensvlees eten en geen melk en vlees tegelijk eten.</p>
+
+<div class="clearfix"></div>
+
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Hummus_from_The_Hummus_Kitchen.jpg/320px-Hummus_from_The_Hummus_Kitchen.jpg" alt="Hummus">
+        <div class="img-caption">Hummus – romige dip van kikkererwten</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Shakshuka_by_Calliopejen1.jpg/320px-Shakshuka_by_Calliopejen1.jpg" alt="Shakshuka">
+        <div class="img-caption">Shakshuka – eieren in tomatensaus</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Pita_bread.jpg/320px-Pita_bread.jpg" alt="Pitabrood">
+        <div class="img-caption">Pitabrood – rond en plat met een zakje</div>
+    </div>
+</div>
+
+<h3 id="cult-muziek">Muziek en dans</h3>
+
+<p>Israël heeft een levendige muziekcultuur. Er is van alles te horen: popmuziek, rockmuziek, hiphop, maar ook traditionele Joodse en Arabische muziek.</p>
+
+<p>Israël doet elk jaar mee aan het <strong>Eurovisie Songfestival</strong> (ook al ligt het in Azië!). Het land heeft het festival al vier keer gewonnen. In 2019 werd het Songfestival in Tel Aviv gehouden.</p>
+
+<p>Een bekende traditionele dans is de <strong>Hora</strong>. Dit is een rondedans die vaak gedanst wordt op feesten en bruiloften. Iedereen houdt elkaars handen vast en danst in een kring.</p>
+
+<!-- ==================== GESCHIEDENIS ==================== -->
+<h2 id="geschiedenis">Geschiedenis</h2>
+
+<h3 id="hist-oud">Heel lang geleden</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Jerusalem_Modell_BW_2.JPG/320px-Jerusalem_Modell_BW_2.JPG" alt="Model van Jeruzalem in de tijd van de Tweede Tempel">
+    <div class="img-caption">Model van Jeruzalem zoals het er 2000 jaar geleden uitzag, met de Tempel</div>
+</div>
+
+<p>Het gebied waar nu Israël ligt, heeft een hele lange geschiedenis. Het is een van de oudste bewoonde gebieden ter wereld!</p>
+
+<ul>
+    <li><strong>Ongeveer 3.000 jaar geleden</strong> – Volgens de Bijbel stichtte koning David het Koninkrijk Israël met Jeruzalem als hoofdstad. Zijn zoon Salomo bouwde de eerste Tempel in Jeruzalem.</li>
+    <li><strong>Ongeveer 2.500 jaar geleden</strong> – Het Babylonische rijk veroverde Jeruzalem en verwoestte de Tempel. Later werd een tweede Tempel gebouwd.</li>
+    <li><strong>Ongeveer 2.000 jaar geleden</strong> – De Romeinen heersten over het gebied. Ze noemden het "Palestina". In het jaar 70 verwoestten de Romeinen de tweede Tempel. Alleen de westelijke muur bleef staan – dit is nu de Klaagmuur.</li>
+</ul>
+
+<div class="clearfix"></div>
+
+<h3 id="hist-diaspora">Joden verspreid over de wereld</h3>
+
+<p>Na de verwoesting van de Tempel werden de meeste Joden verdreven uit hun land. Ze gingen wonen in Europa, Noord-Afrika, het Midden-Oosten en later ook in Amerika. Dit wordt de <strong>diaspora</strong> genoemd (verspreiding).</p>
+
+<p>Hoewel ze over de hele wereld woonden, bleven de Joden dromen van terugkeer naar hun oude land. Elk jaar met Pesach zeiden ze: <em>"Volgend jaar in Jeruzalem!"</em></p>
+
+<p>Ondertussen werd het gebied bestuurd door verschillende rijken: Arabieren, Kruisvaarders, het Ottomaanse Rijk (Turken), en uiteindelijk de Britten.</p>
+
+<h3 id="hist-modern">Terugkeer naar het land</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Theodor_Herzl_retouched.jpg/220px-Theodor_Herzl_retouched.jpg" alt="Theodor Herzl">
+    <div class="img-caption">Theodor Herzl – de grondlegger van het Zionisme</div>
+</div>
+
+<p>Aan het einde van de 19e eeuw (rond 1880-1900) begonnen steeds meer Joden terug te verhuizen naar het gebied. Dit werd de <strong>Zionistische beweging</strong> genoemd. <strong>Theodor Herzl</strong> was een van de belangrijkste leiders van deze beweging. Hij schreef een boek waarin hij zei dat de Joden een eigen land nodig hadden.</p>
+
+<p>De Joden die terugkwamen, bouwden dorpen en steden. Ze maakten de woestijn groen door bomen te planten en landbouw te ontwikkelen. In 1909 werd de stad <strong>Tel Aviv</strong> gesticht.</p>
+
+<p>Tijdens de Tweede Wereldoorlog (1939-1945) werden zes miljoen Joden vermoord door de nazi's in Duitsland. Dit wordt de <strong>Holocaust</strong> (of Sjoa) genoemd. Dit verschrikkelijke gebeurtenis maakte de wens voor een eigen land nog sterker.</p>
+
+<div class="clearfix"></div>
+
+<h3 id="hist-staat">De staat Israël</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Declaration_of_State_of_Israel_1948.jpg/320px-Declaration_of_State_of_Israel_1948.jpg" alt="David Ben-Goerion leest de onafhankelijkheidsverklaring voor">
+    <div class="img-caption">David Ben-Goerion roept de staat Israël uit op 14 mei 1948</div>
+</div>
+
+<p>Op <strong>14 mei 1948</strong> riep <strong>David Ben-Goerion</strong> de onafhankelijkheid uit van de staat Israël. Hij werd de eerste minister-president. Dit is een van de belangrijkste momenten in de Joodse geschiedenis.</p>
+
+<p>Meteen na de oprichting vielen de buurlanden Israël aan. Er volgde een oorlog, maar Israël bleef bestaan. In de jaren daarna zijn er meerdere oorlogen geweest tussen Israël en de buurlanden.</p>
+
+<p>Belangrijke momenten na 1948:</p>
+<ul>
+    <li><strong>1948-1950</strong> – Honderdduizenden Joden uit de hele wereld kwamen naar Israël. De bevolking verdubbelde in twee jaar!</li>
+    <li><strong>1967</strong> – De Zesdaagse Oorlog. Israël veroverde onder andere Oost-Jeruzalem, inclusief de Klaagmuur.</li>
+    <li><strong>1979</strong> – Israël tekende een vredesakkoord met Egypte. Dit was de eerste vrede met een buurland.</li>
+    <li><strong>1994</strong> – Vredesakkoord met Jordanië.</li>
+</ul>
+
+<div class="clearfix"></div>
+
+<h3 id="hist-nu">Israël nu</h3>
+
+<p>Vandaag de dag is Israël een modern land met een sterke economie. Het staat bekend om technologie en innovatie (het wordt soms "<strong>Start-up Nation</strong>" genoemd). Tegelijkertijd zijn er nog steeds spanningen en conflicten in de regio.</p>
+
+<p>Israël blijft een land waar mensen uit de hele wereld naartoe komen om er te wonen, te werken, of om de heilige plekken te bezoeken.</p>
+
+<div class="fun-fact">
+    <div class="fact-title">&#128161; Wist je dat?</div>
+    Toen Israël in 1948 werd opgericht, woonden er ongeveer 806.000 mensen. Nu zijn dat er bijna 10 miljoen! Veel van die groei komt doordat Joden uit de hele wereld naar Israël zijn verhuisd.
+</div>
+
+<!-- ==================== BEZIENSWAARDIGHEDEN ==================== -->
+<h2 id="bezienswaardigheden">Bezienswaardigheden</h2>
+
+<h3 id="bez-jeruzalem">Jeruzalem</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Jerusalem_Western_Wall_BW_1.JPG/320px-Jerusalem_Western_Wall_BW_1.JPG" alt="De Klaagmuur in Jeruzalem">
+    <div class="img-caption">De Klaagmuur (Westelijke Muur) in Jeruzalem – de heiligste plek voor joden</div>
+</div>
+
+<p>Jeruzalem is de hoofdstad van Israël en een van de oudste steden ter wereld. De stad is meer dan <strong>3.000 jaar oud</strong>! Het meest bijzondere deel is de <strong>Oude Stad</strong>, die omringd is door een grote, oude muur.</p>
+
+<p>De Oude Stad is verdeeld in vier wijken:</p>
+<ul>
+    <li><strong>De Joodse wijk</strong> – met de Klaagmuur (Westelijke Muur)</li>
+    <li><strong>De Moslimwijk</strong> – met de Rotskoepel en Al-Aqsa-moskee</li>
+    <li><strong>De Christelijke wijk</strong> – met de Heilig Grafkerk</li>
+    <li><strong>De Armeense wijk</strong> – de kleinste wijk</li>
+</ul>
+
+<p>Buiten de Oude Stad vind je het <strong>Yad Vashem</strong> (het Holocaustmuseum), het <strong>Israël Museum</strong> (waar de Dode Zeerollen worden bewaard), en de <strong>Mahane Yehuda markt</strong> – een kleurrijke markt met heerlijk eten.</p>
+
+<div class="clearfix"></div>
+
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Jerusalem_Dome_of_the_rock_BW_14.JPG/320px-Jerusalem_Dome_of_the_rock_BW_14.JPG" alt="Rotskoepel">
+        <div class="img-caption">De Rotskoepel op de Tempelberg</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Church_of_the_Holy_Sepulchre_by_Gerd_Eichmann.jpg/320px-Church_of_the_Holy_Sepulchre_by_Gerd_Eichmann.jpg" alt="Heilig Grafkerk">
+        <div class="img-caption">De Heilig Grafkerk</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Mahane_Yehuda_Market_%2833634934604%29.jpg/320px-Mahane_Yehuda_Market_%2833634934604%29.jpg" alt="Mahane Yehuda markt">
+        <div class="img-caption">De kleurrijke Mahane Yehuda markt</div>
+    </div>
+</div>
+
+<h3 id="bez-telaviv">Tel Aviv</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Tel_Aviv-Yafo_Skyline_%28cropped%29.jpg/400px-Tel_Aviv-Yafo_Skyline_%28cropped%29.jpg" alt="Tel Aviv skyline" style="width:290px;">
+    <div class="img-caption">Tel Aviv – een moderne stad aan de Middellandse Zee</div>
+</div>
+
+<p>Tel Aviv is de modernste stad van Israël. Het is een jonge stad – pas gesticht in 1909! Het ligt aan de Middellandse Zee en heeft mooie stranden.</p>
+
+<p>Leuke dingen in Tel Aviv:</p>
+<ul>
+    <li><strong>De stranden</strong> – Tel Aviv heeft kilometers aan zandstranden langs de zee.</li>
+    <li><strong>De Witte Stad</strong> – Een deel van Tel Aviv met meer dan 4.000 witte gebouwen in Bauhaus-stijl. Het staat op de UNESCO Werelderfgoedlijst!</li>
+    <li><strong>Oude Jaffa</strong> – Het oude deel van de stad, met smalle straatjes, galerieën en een oude haven. Jaffa is duizenden jaren oud.</li>
+    <li><strong>De Karmelmarkt (Shuk HaCarmel)</strong> – Een grote, drukke markt met fruit, groente, specerijen, kleding en nog veel meer.</li>
+    <li><strong>Nachtleven</strong> – Tel Aviv staat bekend als een stad die nooit slaapt.</li>
+</ul>
+
+<div class="clearfix"></div>
+
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Jaffa_Port_2021.jpg/320px-Jaffa_Port_2021.jpg" alt="Oude Jaffa">
+        <div class="img-caption">De oude haven van Jaffa</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/White_City_Tel_Aviv.jpg/320px-White_City_Tel_Aviv.jpg" alt="Witte Stad Tel Aviv">
+        <div class="img-caption">De Witte Stad – Bauhaus-architectuur</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/PikiWiki_Israel_66498_carmel_market.jpg/320px-PikiWiki_Israel_66498_carmel_market.jpg" alt="Karmelmarkt">
+        <div class="img-caption">De drukke Karmelmarkt</div>
+    </div>
+</div>
+
+<h3 id="bez-dodezee">De Dode Zee</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dead_Sea_by_David_Shankbone.jpg/320px-Dead_Sea_by_David_Shankbone.jpg" alt="De Dode Zee">
+    <div class="img-caption">De Dode Zee – zo zout dat je vanzelf drijft!</div>
+</div>
+
+<p>De Dode Zee is een van de bijzonderste plekken op aarde. Het is eigenlijk een heel groot meer aan de grens van Israël en Jordanië. Bijzondere feiten:</p>
+
+<ul>
+    <li>Het is het <strong>laagste punt op aarde</strong>: 430 meter onder de zeespiegel.</li>
+    <li>Het water is <strong>10 keer zouter</strong> dan de oceaan. Daardoor kun je er niet in zinken – je drijft vanzelf!</li>
+    <li>Er leven <strong>geen vissen</strong> in het water (daarom heet het de "Dode" Zee).</li>
+    <li>De modder van de Dode Zee is goed voor je huid. Veel mensen smeren zichzelf ermee in.</li>
+    <li>De Dode Zee wordt <strong>steeds kleiner</strong>. Elk jaar daalt het waterpeil. Wetenschappers maken zich hier zorgen over.</li>
+</ul>
+
+<p>In de buurt van de Dode Zee vind je ook <strong>Masada</strong> – een oude vesting op een hoge rots. Je kunt er naartoe met een kabelbaan of door naar boven te klimmen. Het is een UNESCO Werelderfgoed.</p>
+
+<div class="clearfix"></div>
+
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Masada_BW_1.JPG/320px-Masada_BW_1.JPG" alt="Masada">
+        <div class="img-caption">Masada – een oude vesting in de woestijn</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Ein_Gedi_Botanical_Garden_03.jpg/320px-Ein_Gedi_Botanical_Garden_03.jpg" alt="Ein Gedi oase">
+        <div class="img-caption">Ein Gedi – een groene oase bij de Dode Zee</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Dead-sea-scroll.jpg/320px-Dead-sea-scroll.jpg" alt="Dode Zeerollen">
+        <div class="img-caption">De Dode Zeerollen – meer dan 2000 jaar oud!</div>
+    </div>
+</div>
+
+<h3 id="bez-eilat">Eilat en de Rode Zee</h3>
+
+<div class="wiki-image right">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Eilat_by_the_Red_Sea.jpg/320px-Eilat_by_the_Red_Sea.jpg" alt="Eilat aan de Rode Zee">
+    <div class="img-caption">Eilat – een vakantiestad aan de Rode Zee</div>
+</div>
+
+<p><strong>Eilat</strong> is een populaire vakantiestad helemaal in het zuiden van Israël. Het ligt aan de <strong>Rode Zee</strong> en het is er het hele jaar door warm. Toeristen komen hier voor:</p>
+<ul>
+    <li>De prachtige <strong>koraalriffen</strong> – je kunt snorkelen en duiken tussen kleurrijke koralen en tropische vissen.</li>
+    <li>Het <strong>Onderwaterobservatorium</strong> – een gebouw onder water waar je vissen en haaien kunt bekijken.</li>
+    <li>De <strong>Dolfijnenrif</strong> – een plek waar je kunt zwemmen met dolfijnen.</li>
+    <li><strong>Woestijnwandelingen</strong> – de woestijn rondom Eilat heeft mooie rode rotsen en canyons.</li>
+</ul>
+
+<div class="clearfix"></div>
+
+<h3 id="bez-meer">Meer plekken om te bezoeken</h3>
+
+<div class="gallery">
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Bahai_Garden_Haifa.jpg/320px-Bahai_Garden_Haifa.jpg" alt="Bahai-tuinen Haifa">
+        <div class="img-caption">De Bahai-tuinen in Haifa – UNESCO Werelderfgoed</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Acre_-_the_ass-kicking_Crusader_town_%284136714789%29.jpg/320px-Acre_-_the_ass-kicking_Crusader_town_%284136714789%29.jpg" alt="Akko">
+        <div class="img-caption">De oude havenstad Akko (Acre)</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Caesarea_maritima_BW_4.JPG/320px-Caesarea_maritima_BW_4.JPG" alt="Caesarea">
+        <div class="img-caption">Romeinse ruïnes in Caesarea</div>
+    </div>
+    <div class="gallery-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Israel-2013-Negev-Makhtesh_Ramon_01.jpg/320px-Israel-2013-Negev-Makhtesh_Ramon_01.jpg" alt="Makhtesh Ramon">
+        <div class="img-caption">Makhtesh Ramon – de grootste krater ter wereld</div>
+    </div>
+</div>
+
+<ul>
+    <li><strong>Het Meer van Galilea</strong> (Kinneret) – Het grootste zoetwatermeer van Israël, in het noorden. Belangrijk in de christelijke geschiedenis.</li>
+    <li><strong>Haifa en de Bahai-tuinen</strong> – Prachtige, trapvormige tuinen op de berg Karmel. UNESCO Werelderfgoed.</li>
+    <li><strong>Akko (Acre)</strong> – Een oude havenstad met een ondergrondse kruisvaardersburcht. Ook UNESCO Werelderfgoed.</li>
+    <li><strong>Nazareth</strong> – De stad waar Jezus is opgegroeid, volgens de christelijke traditie.</li>
+    <li><strong>De Golanhoogten</strong> – Groene heuvels in het noordoosten met watervallen en natuur.</li>
+    <li><strong>Makhtesh Ramon</strong> – Een enorme krater in de Negev-woestijn. Het is de grootste krater ter wereld!</li>
+    <li><strong>Caesarea</strong> – Oude Romeinse stad aan de kust met een theater en aquaduct.</li>
+</ul>
+
+<!-- ==================== SPORT ==================== -->
+<h2 id="sport">Sport</h2>
+
+<p>Sport is heel populair in Israël. De populairste sporten zijn:</p>
+
+<ul>
+    <li><strong>Voetbal</strong> – Net als in Nederland is voetbal de populairste sport. Bekende clubs zijn Maccabi Haifa, Hapoel Be'er Sjeva en Maccabi Tel Aviv.</li>
+    <li><strong>Basketbal</strong> – Maccabi Tel Aviv is een van de beste basketbalteams van Europa en heeft meerdere keren de EuroLeague gewonnen.</li>
+    <li><strong>Zwemmen</strong> – Israël heeft veel goede zwemmers.</li>
+    <li><strong>Judo</strong> – Israël heeft olympische medailles gewonnen met judo!</li>
+    <li><strong>Krav Maga</strong> – Een zelfverdedigingssport die in Israël is uitgevonden. Het wordt nu over de hele wereld beoefend.</li>
+</ul>
+
+<p>Israël doet mee aan de <strong>Olympische Spelen</strong> en aan Europese sportcompetities, ook al ligt het land in Azië.</p>
+
+<!-- ==================== UITVINDINGEN ==================== -->
+<h2 id="uitvindingen">Uitvindingen en technologie</h2>
+
+<p>Israël staat bekend als het "<strong>Start-up Nation</strong>" omdat er heel veel technologiebedrijven zijn. Israëliërs hebben veel dingen uitgevonden die over de hele wereld worden gebruikt:</p>
+
+<ul>
+    <li><strong>Druppelirrigatie</strong> – Een slimme manier om planten water te geven met heel weinig water. Kleine druppels water gaan precies naar de wortels van de plant. Dit helpt om gewassen te laten groeien in de woestijn!</li>
+    <li><strong>USB-stick</strong> – De USB-flashdrive die je gebruikt om bestanden op te slaan, is uitgevonden in Israël.</li>
+    <li><strong>Cherry tomaat</strong> – De kleine, zoete tomaatjes die je in de supermarkt koopt, zijn ontwikkeld door Israëlische wetenschappers.</li>
+    <li><strong>Waze</strong> – De navigatie-app die je ouders misschien in de auto gebruiken, is gemaakt in Israël.</li>
+    <li><strong>IJzeren Koepel</strong> – Een verdedigingssysteem dat raketten uit de lucht kan halen.</li>
+    <li><strong>Waterontzilting</strong> – Israël is een wereldleider in het omzetten van zeewater in drinkwater.</li>
+</ul>
+
+<div class="fun-fact">
+    <div class="fact-title">&#128161; Wist je dat?</div>
+    Israël heeft het hoogste aantal start-up bedrijven per inwoner ter wereld! Er zijn meer dan 6.000 start-ups in zo'n klein land.
+</div>
+
+<!-- ==================== WETENSWAARDIGHEDEN ==================== -->
+<h2 id="wetenswaardigheden">Wetenswaardigheden</h2>
+
+<p>Hier zijn nog een paar leuke en interessante feiten over Israël:</p>
+
+<ul>
+    <li>De Israëlische vlag is <strong>wit met twee blauwe strepen</strong> en een blauwe <strong>Davidster</strong> (Magen David) in het midden.</li>
+    <li>Het volkslied van Israël heet "<strong>Hatikwa</strong>", wat "De Hoop" betekent.</li>
+    <li>Israël is het enige land ter wereld dat is begonnen met meer woestijn dan groen land, en waar nu <strong>meer bomen</strong> staan dan 100 jaar geleden.</li>
+    <li>De stad <strong>Jericho</strong>, vlakbij Israël, is misschien wel de oudste stad ter wereld (meer dan 10.000 jaar oud).</li>
+    <li>In Israël lees je <strong>boeken van achteren naar voren</strong> (omdat Hebreeuws van rechts naar links gaat).</li>
+    <li>De <strong>Dode Zeerollen</strong> zijn heel oude documenten die in 1947 werden gevonden in grotten bij de Dode Zee. Ze zijn meer dan 2.000 jaar oud!</li>
+    <li>Israël heeft meer <strong>musea per inwoner</strong> dan enig ander land ter wereld.</li>
+    <li>Het nationale symbool van Israël is de <strong>Menora</strong> – een kandelaar met zeven armen.</li>
+    <li>In Israël is de <strong>werkweek</strong> van zondag tot donderdag of vrijdagmiddag. Het weekend is op vrijdagmiddag en zaterdag.</li>
+    <li>Israëliërs eten gemiddeld meer <strong>fruit en groente</strong> per persoon dan bijna alle andere landen.</li>
+</ul>
+
+<!-- Categories -->
+<div class="categories">
+    <strong>Categorieën:</strong>
+    <a href="#">Land in Azië</a> ·
+    <a href="#">Midden-Oosten</a> ·
+    <a href="#">Israël</a> ·
+    <a href="#">Jodendom</a> ·
+    <a href="#">Jeruzalem</a> ·
+    <a href="#">Landen aan de Middellandse Zee</a>
+</div>
+
+</main>
+</div>
+
+</body>
+</html>
